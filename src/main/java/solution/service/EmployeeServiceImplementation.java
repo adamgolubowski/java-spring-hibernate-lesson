@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import solution.dao.EmployeeDao;
 import solution.employee.Employee;
@@ -17,14 +16,12 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
 	
 	@Override
-	@Transactional
 	public void addEmployee(Employee employee) {
 		employeeDao.add(employee);
 
 	}
 
 	@Override
-	@Transactional(readOnly=true)
 	public List<Employee> listEmployee() {
 		return employeeDao.listEmployee();
 	}

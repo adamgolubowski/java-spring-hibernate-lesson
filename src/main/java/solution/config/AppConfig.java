@@ -48,7 +48,7 @@ public class AppConfig {
 		pr.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 	    pr.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 	    pr.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-	    pr.put("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
+	    //pr.put("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
 	    pr.put("hibernate.dialect.storage_engine", env.getProperty("hibernate.engine"));
 	    factoryBean.setHibernateProperties(pr);
 	    factoryBean.setAnnotatedClasses(Employee.class);

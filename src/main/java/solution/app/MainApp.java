@@ -11,10 +11,11 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
 		
 		EmployeeService employeeService = context.getBean(EmployeeService.class);
 		employeeService.addEmployee(new Employee("Adam","G","AZ"));
-		employeeService.addEmployee(new Employee("czcsa","a","sds"));
+		employeeService.addEmployee(new Employee("Joe","B","XYZ"));
 		
 		List<Employee> employees = employeeService.listEmployee();
 		
