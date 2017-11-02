@@ -1,48 +1,42 @@
-package solution.employee;
+package solution.entities;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="EMPLOYEES")
 public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name="first_name")
+	private int id;
 	private String firstName;
-	
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", company=" + company
-				+ "]";
-	}
-
-	@Column(name="last_name")
 	private String lastName;
-	
-	@Column(name="company")
 	private String company;
+	
+	@OneToMany(mappedBy="employee",
+			   fetch=FetchType.LAZY)
+	private List<Rent> rents;
 	
 	public Employee() {}
 
-	public Employee(String firstName, String lastName, String company) {
+	public Employee(String firstName, String lastName, String company, List<Rent> rents) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.company = company;
+		this.rents = rents;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -70,7 +64,20 @@ public class Employee {
 		this.company = company;
 	}
 	
-	
+	public List<Rent> getRents() {
+		return rents;
+	}
+
+	public void setRents(List<Rent> rents) {
+		this.rents = rents;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", company=" + company
+				+ "]";
+	}
+
 	
 
 }

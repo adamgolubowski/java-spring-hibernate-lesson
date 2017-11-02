@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import solution.employee.Employee;
+import solution.entities.Employee;
+import solution.entities.Rent;
 
 @Repository
-public class EmployeeDaoImplemented implements EmployeeDao {
+public class EmployeeDaoImpl implements EmployeeDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -32,9 +33,32 @@ public class EmployeeDaoImplemented implements EmployeeDao {
 	@Override
 	@Transactional
 	public List<Employee> listEmployee() {
+		@SuppressWarnings("unchecked")
 		TypedQuery<Employee> query = currentSession().createQuery("from Employee");
 		List<Employee> employees = query.getResultList();
 		return employees;
+	}
+	
+
+
+	@Override
+	@Transactional
+	public List<Rent> listRentsForEmployee(Employee employee) {
+		@SuppressWarnings("unchecked")
+		TypedQuery<Rent> query = currentSession().createQuery("from Rent r where r.employee.id = :theEmployeeId");
+		query.setParameter("theEmployeeId", employee.getId());
+		List<Rent> rents = query.getResultList();
+		return rents;
+	}
+
+
+	@Override
+	public Employee getEmployee(int id) {
+		@SuppressWarnings("unchecked")
+		TypedQuery<Employee> query = currentSession().createQuery("from Employee e where e.id=:employeeId");
+		query.setParameter("employeeId", id);
+		Employee employee = query.getSingleResult();
+		return employee;
 	}
 
 }

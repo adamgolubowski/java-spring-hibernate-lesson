@@ -40,3 +40,4 @@ atlassian-ide-plugin.xml
 .gradletasknamecache
 
 db.properties
+/src/main/java/solution/demo/

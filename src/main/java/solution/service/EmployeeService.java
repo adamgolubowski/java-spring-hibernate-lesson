@@ -2,9 +2,11 @@ package solution.service;
 
 import java.util.List;
 
-import solution.employee.Employee;
+import solution.entities.Employee;
+import solution.entities.Rent;
 
 public interface EmployeeService {
-	void addEmployee(Employee employee);
-	List<Employee> listEmployee(); 
+	public void addEmployee(Employee employee);
+	public List<Employee> listEmployee(); 
+	public List<Rent> listRentsForEmployee(Employee employee);
 }

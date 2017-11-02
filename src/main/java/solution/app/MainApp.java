@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import solution.config.AppConfig;
-import solution.employee.Employee;
+import solution.entities.Employee;
 import solution.service.EmployeeService;
 
 public class MainApp {
@@ -14,8 +14,8 @@ public class MainApp {
 
 		
 		EmployeeService employeeService = context.getBean(EmployeeService.class);
-		employeeService.addEmployee(new Employee("Adam","G","AZ"));
-		employeeService.addEmployee(new Employee("Joe","B","XYZ"));
+		//employeeService.addEmployee(new Employee("Adam","G","AZ"));
+		//employeeService.addEmployee(new Employee("Joe","B","XYZ"));
 		
 		List<Employee> employees = employeeService.listEmployee();
 		

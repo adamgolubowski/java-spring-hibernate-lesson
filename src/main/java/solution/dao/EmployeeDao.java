@@ -2,10 +2,12 @@ package solution.dao;
 
 import java.util.List;
 
-import solution.employee.Employee;
+import solution.entities.Employee;
+import solution.entities.Rent;
 
 public interface EmployeeDao {
-	void add(Employee employee);
-	List<Employee> listEmployee();
-
+	public void add(Employee employee);
+	public List<Employee> listEmployee();
+	public Employee getEmployee(int id);
+	public List<Rent> listRentsForEmployee(Employee employee);
 }

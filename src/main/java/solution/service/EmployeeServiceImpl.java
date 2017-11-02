@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import solution.dao.EmployeeDao;
-import solution.employee.Employee;
+import solution.entities.Employee;
+import solution.entities.Rent;
 
 @Service
-public class EmployeeServiceImplementation implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
 	private EmployeeDao employeeDao;
@@ -24,6 +25,11 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	@Override
 	public List<Employee> listEmployee() {
 		return employeeDao.listEmployee();
+	}
+
+	@Override
+	public List<Rent> listRentsForEmployee(Employee employee) {
+		return employeeDao.listRentsForEmployee(employee);
 	}
 
 }

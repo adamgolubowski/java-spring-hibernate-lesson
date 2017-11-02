@@ -14,15 +14,13 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import solution.employee.Employee;
-
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScans(value= {
 		@ComponentScan("solution.dao"),
-		@ComponentScan("solution.service"),
-		@ComponentScan("solution.employee")
+		@ComponentScan("solution.entities"),
+		@ComponentScan("solution.service")
 })
 public class AppConfig {
 	
@@ -44,15 +42,15 @@ public class AppConfig {
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 		factoryBean.setDataSource(getDataSource());
 		
+		factoryBean.setPackagesToScan(new String[] {"solution.entities"});
+		
 		Properties pr = new Properties();
 		pr.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 	    pr.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 	    pr.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-	    //pr.put("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
 	    pr.put("hibernate.dialect.storage_engine", env.getProperty("hibernate.engine"));
 	    factoryBean.setHibernateProperties(pr);
-	    factoryBean.setAnnotatedClasses(Employee.class);
-	    
+
 	    return factoryBean;
 	}
 	
